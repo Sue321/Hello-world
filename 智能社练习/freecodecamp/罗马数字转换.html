@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        //只能转换4000以内的罗马数字
+        //思路： 将个十百千拆开转换，每逢 1,4，5，9， 10,40，50,90,100,400，500，900,1000都要特殊判断
+        function convert(num) {
+                var one = num % 10;
+                var arr1=[];
+                var two = (num-one)%100;
+                var arr2=[];
+                var three = (num-one-two)%1000;
+                var arr3=[];
+                var four = (num-one -two -three)%10000;
+                var arr4=[];
+                if(one>0 && one < 4){
+                    for(var i1 =1;i1<=one;i1++){
+                    arr1.push("I");
+                    }
+                }else if(one == 4){
+                    arr1.push("I","V");
+                }else if(one == 5){
+                    arr1.push("V");
+                }else if(one>5&& one<9){
+                    arr1.push("V");
+                    for(var j1 = 6;j1<= one ;j1++){
+                    arr1.push("I");
+                    }
+                }else if(one ==9){
+                    arr1.push("I","X");
+                }
+                
+                if(two >= 10 && two < 40 ){
+                    for(var i2 =10; i2<= two;i2=i2+10){
+                    arr2.push("X");
+                    }
+                }else if(two== 40){
+                    arr2.push("X","L");
+                }else if(two == 50){
+                    arr2.push("L");
+                }else if(two > 50&& two< 90){
+                    arr2.push("L");
+                    for(var j2 = 60;j2<=two;j2=j2+10){
+                    arr2.push("X");
+                    }
+                }else if(two == 90){
+                    arr2.push("X","C");
+                }
+                
+                if(three >= 100 && three < 400 ){
+                    for(var i3 =100; i3<= three;i3=i3+100){
+                    arr3.push("C");
+                    }
+                }else if(three== 400){
+                    arr3.push("C","D");
+                }else if(three == 500){
+                    arr3.push("D");
+                }else if( three> 500 && three < 900){
+                    arr3.push("D");
+                    for(var j3 = 600;j3<=three;j3=j3+100){
+                    arr3.push("C");
+                    }
+                }else if(three == 900){
+                    arr3.push("C","M");
+                }
+                
+                if(four >= 1000 && four < 4000 ){
+                    for(var i4 =1000; i4<= four;i4=i4+1000){
+                    arr4.push("M");
+                    }
+                }
+                var str = arr4.join("")+arr3.join("")+arr2.join("")+arr1.join("");
+                
+                return str;
+                }
+    </script>   
+</head>
+<body>
+    
+</body>
+</html>

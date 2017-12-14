@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+//-------------------------------------------------------------------------------------------------
+    // DNA碱基对，A与T,C与G
+    //     function pair(str) {
+    //     var arr = str.split("");
+    //     var arrnew = [];
+    //     for(var i =0;i< arr.length;i++){
+    //         if(arr[i]=="G"){
+    //         arrnew[i]=["G","C"];
+    //     }else if(arr[i]=='C'){
+    //         arrnew[i]=["C","G"];
+    //     }else if(arr[i]=="A"){
+    //         arrnew[i]=["A","T"];
+    //     }else if(arr[i]=="T"){
+    //         arrnew[i]=["T","A"];
+    //     }
+    //    }
+  
+  
+    //     return arrnew;
+    //     }
+
+    //     pair("GCG");
+
+//---------------------------------------------------------------------------------------------
+
+// 缺失字母判断，如果有缺失，返回缺失部分；如果没有，返回 undefined 
+        // function fearNotLetter(str) {
+        //     var strnew ='';
+        //     var isFind =true;//作为标志位，判断是否有缺失字母
+            
+        //     for(var i=0;i<str.length;i++){
+        //         var dif = str.charCodeAt(i+1)-str.charCodeAt(i);
+        //         if( dif > 1){
+                
+        //         isFind = false;
+        //         for(var j = str.charCodeAt(i)+1;j<str.charCodeAt(i+1);j++){
+        //             strnew += String.fromCharCode(j);
+        //         }
+                
+        //         }
+        //     }
+            
+        //     if(isFind){
+        //         return undefined;
+        //     }
+            
+        //     return strnew;
+        //     }
+
+        //     fearNotLetter("abce");
+//-----------------------------------------------------------------------------------------
+            //   //判断参数是否boolean 类型
+            //     function boo(bool) {
+                
+            //     if(typeof bool == "boolean"){
+            //         return true ;
+            //     }else{
+            //         return false;
+            //     }
+                
+            //     }
+    
+  //  -----------------------------------------------------------------------------------------
+  //将字符串中的字符 &、<、>、" （双引号）, 以及 ' （单引号）转换为它们对应的 HTML 实体。
+    //  function convert(str) {
+    //         // &colon;&rpar;
+    //         var re1 = /&/g;
+    //         var re2 = /</g;
+    //         var re3 = />/g;
+    //         var re4 = /"/g;
+    //         var re5 = /'/g;
+    //         var strnew;
+    //         str =str.replace(re1,"&amp;");
+           
+    //         str= str.replace(re2,"&lt;");
+            
+    //         str = str.replace(re3,"&gt;");
+           
+    //         str = str.replace(re4,"&quot;");
+           
+    //         str = str.replace(re5,"&apos;");
+            
+    //         return str;
+    //         }
+
+    //        console.log(convert("Dolce & Gabbana"));
+
+//  -----------------------------------------------------------------------------------------
+// 写一个 function，传入两个或两个以上的数组，返回一个以给定的原始数组排序的不包含重复值的新数组。
+
+// 换句话说，所有数组中的所有值都应该以原始顺序被包含在内，但是在最终的数组中不包含重复值。  
+           
+           
+        //    function unite(arr1, arr2, arr3) {
+            
+        //     var arr =[].slice.call(arguments); //将arguments转换成数组
+        //     //先将参数数组合并成一个数组，arguments没有数组的其他属性方法
+        //     var arrnew = arr.reduce(function(arr,val){
+        //         return arr.concat(val);
+        //     });
+            
+        //     for(var i=0;i < arrnew.length-1;i++){
+               
+        //         for(var j= i+1;j < arrnew.length;j++){
+        //             if(arrnew[i] == arrnew[j]){
+        //             arrnew.splice(j,1);
+        //             console.log(arrnew.splice(j,1));
+        //             }  
+        //         }
+                
+                
+        //     }
+        //     return arrnew;
+        //     }
+
+        //     unite([1, 2, 3], [5, 2, 1, 4], [2, 1], [6, 7, 8]);
+//  -----------------------------------------------------------------------------------------
+// 给一个正整数num，返回小于或等于num的斐波纳契奇数之和。
+// 斐波纳契数列中的前几个数字是 1、1、2、3、5 和 8，随后的每一个数字都是前两个数字之和。
+                // function sumFibs(num) {
+                // var sum =2;
+                // var c = 2;
+                // var n = 2;
+                // while(c<= num){
+                //     fib(n,num);
+                //     n++;
+                // }
+                
+                // function fib(n,num){
+                //将提示中的加法函数，添加一个参数num,作为判断标准，是否加起来
+                //参数 n 表示，在斐波拉切数列中的索引
+                //     if(num < 2){
+                //     return 2;
+                //     }
+                    
+                //     var a=1;  var b=1;
+                //     for(var i =2;i<n-1;i++){
+                //     b=a+b;
+                //     a=b-a;
+                //     c =b+a;
+                //     }
+                //     if(c<=num && c%2==1){
+                //         sum+=c;
+                //     }
+                // }
+                
+                
+                // return sum;
+                // }
+
+                // sumFibs(1);
+//  -----------------------------------------------------------------------------------------
+// 求小于等于给定数值的质数之和。
+// 只有 1 和它本身两个约数的数叫质数。例如，2 是质数，因为它只能被 1 和 2 整除。1 不是质数，因为它只能被自身整除
+                // function sumPrimes(num) {
+                // var sum=0;
+                // var isTrue =true;
+                // for(var i=2;i<=num;i++){ //思路： 两层循环，一层是被除数，一层是除数
+                //     isTrue = true;  //标志位
+                //     for(var j= 2;j< i ;j++){
+                //     if(i%j ===0){
+                //         isTrue = false; //只要有能够整除的数，就不是质数
+                //     }
+                //     }
+                //     if(isTrue){
+                //     sum+=i;
+                //     }
+                // }
+                // return sum;
+                // }
+
+                // sumPrimes(10);
+
+//  -----------------------------------------------------------------------------------------
+//求多个数最小公倍数可以转化为求多个数的最大公约数。 
+// 多个数的最小公倍数 = 所有数乘积/（乘积/第一个数，乘积/第二个数，......乘积/第n个数的最大公约数） 
+                    //   求多个数的最大公约数(a1,a2,..,an)的传统方法是多次求两个数的最大公约数，即
+                    //     （1） 用辗转相除法[2]计算a1和a2的最大公约数(a1,a2)
+                    //     （2）用辗转相除法计算(a1,a2)和a3的最大公约数，求得(a1,a2,a3)
+                    //     （3）用辗转相除法计算(a1,a2,a3)和a4的最大公约数，求得(a1,a2,a3,a4)
+                    //     （4）依此重复，直到求得(a1,a2,..,an)
+                    //     上述方法需要n-1次辗转相除运算。 
+                   
+                // function smallestCommons(arr) {
+                //     var max = Math.max(arr[0],arr[1]);
+                //     var min = Math.min(arr[0],arr[1]);
+                //     //因为两个数大小不定
+                   
+                //     var mul=1;
+                //     for(var i= min;i<=max;i++){
+                //         mul *= i ;    //所有数的乘积
+                //     }
+                  
+                //     var arrnew =[];
+                //     for(var i= min;i<=max;i++){
+                //          arrnew[i-min] = mul/i;  //乘积/第一个数，乘积/第二个数，......乘积/第n个数
+                //      }
+                     
+                //     var mcm= maxco(arrnew[1],arrnew[0]);
+                //     for(var j=2;j<arrnew.length;j++){
+                //        mcm = maxco(arrnew[j],mcm);   //（乘积/第一个数，乘积/第二个数，......乘积/第n个数的最大公约数）
+                      
+                //     }
+                //     var lcm = mul/mcm;
+                //     //判断两个数的最大公约数的函数,辗转相除法；直到余数为0，此时的除数为最大公约数
+                //     //因为已经排序，所以省略大小比较，a<b
+                //     function maxco(a,b){
+                //         var temp;
+                //         while((temp =b%a) !== 0){
+                //         b=a;
+                //         a=temp;
+                //         temp = b%a;  
+                //         }
+                //         return a;
+                //     }
+                    
+                //     //最小公倍数=两个数乘积/最大公约数
+                //     function minco(a,b){
+                //         return a*b/maxco(a,b);
+                //     }
+                    
+                    
+                    
+                //     return lcm;
+                //     }
+
+
+                //     console.log(smallestCommons([1,5]));
+
+
+
+//  -----------------------------------------------------------------------------------------
+                    // 写一个 function，它遍历数组 arr，并返回数组中第一个满足 func 返回值的元素。
+                    //  与filter 区别在于返回第一个，了解filter的用法，回调函数取函数名，不加括号
+                    // function find(arr, func) {
+                    // var arrnew =  arr.filter(func);
+                    // return arrnew[0];
+                    // }
+
+                    // find([1, 3, 5, 9], function(num) { return num % 2 === 0; });
+
+//  -----------------------------------------------------------------------------------------
+//  对嵌套的数组进行扁平化处理。你必须考虑到不同层级的嵌套。
+                    // function steamroller(arr) {
+                    // // I'm a steamroller, baby
+                    // var arrnew=[];
+                    //  judgearr(arr);
+                    // //因为不知道数组嵌套层数，所有通过函数迭代实现，直到最下面一层不是数组时，才push进新数组。
+                    // // arrnew 是全局变量，因为要保存所有的数组内部内容    
+                    // function judgearr(arr){
+                    //     for(var i =0; i< arr.length;i++){
+                    //     if(!Array.isArray(arr[i])){
+                    //         arrnew.push(arr[i]);
+                    //     }else{
+                    //         judgearr(arr[i]);
+                    //     }
+                    //     }
+                    //     return arrnew;
+                    // }
+                    
+                    // return arrnew;
+                    // }
+
+                    // steamroller([1, [2], [3, [[4]]]]);
+
+//  ----------------------------------------------------------------------------------------
+ // 传入二进制字符串，翻译成英语句子并返回。
+      
+            //         function binaryAgent(str) {
+            //         var arr = str.split(" ");  //将字符串转成数组，分出每一段二进制码
+            //         var result = "";
+            //         for(var i =0; i< arr.length;i++){
+            //             var item = arr[i];
+            //             var charcode = parseInt(item,2);  
+            //             //将每一段二进制码转成十进制整数，parseInt(str,radix),radix表示前面str是几进制
+            //             result = result + String.fromCharCode(charcode);
+            //         }
+                    
+                    
+                    
+            //         return result;
+            //         }
+
+            //    console.log(binaryAgent("01000001 01110010 01100101 01101110 00100111 01110100 00100000 01100010 01101111 01101110 01100110 01101001 01110010 01100101 01110011 00100000 01100110 01110101 01101110 00100001 00111111"));
+
+//  ----------------------------------------------------------------------------------------
+// 完善编辑器中的every函数，如果集合(collection)中的所有对象都存在对应的属性(pre)，并且属性(pre)对应的值为真。函数返回ture。反之，返回false
+            //    function every(collection, pre) {
+            //     //Array.prototype.every(callback,对象)，
+            //     //只有数组中每一个元素都通过callback测试，才返回true
+            //       function callpre(element){
+            //         var isTrue =true;
+            //         if(element[pre]){
+            //         isTrue = true;
+            //         }else{
+            //         isTrue = false;
+            //         }
+            //         return isTrue;
+            //     }
+
+            //     return collection.every(callpre);
+            //     }
+
+            //     every([{"user": "Tinky-Winky", "sex": "male"}, {"user": "Dipsy", "sex": "male"}, {"user": "Laa-Laa", "sex": "female"}, {"user": "Po", "sex": "female"}], "sex");
+
+            //     console.log(1+ [2]);
+
+
+
+//  ----------------------------------------------------------------------------------------
+// 创建一个计算两个参数之和的 function。如果只有一个参数，则返回一个 function，该 function 请求一个参数然后返回求和的结果。
+// 例如，add(2, 3) 应该返回 5，而 add(2) 应该返回一个 function。
+// 调用这个有一个参数的返回的 function，返回求和的结果：
+// var sumTwoAnd = add(2);
+// sumTwoAnd(3) 返回 5。
+           
+           
+           
+            function add() {
+                if(typeof arguments[0] !== "number"){
+                        return undefined;
+                }else if(arguments.length==1){
+                    var a= arguments[0];
+                    function sumTwo(c){   
+ //   闭包的应用，内部函数经过第一个参数被返回，再输入第二个参数时，调用的是内部函数，
+ //  因此内部函数的功能就是要将外部函数的一个参数与内部函数的参数相加
+                        if(typeof c!== "number"){
+                            return undefined;
+                        }
+                        return a+c;  //外部函数的一个参数与内部函数的参数相加
+                    }   
+                    return sumTwo;   
+                }else if(typeof arguments[1]!=="number"){    
+                    return undefined;
+                }else{
+                    return arguments[0]+ arguments[1];  
+                }                                                                        
+            }
+
+            add(2)(3);
+
+
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

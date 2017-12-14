@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+
+     //把指定字符串翻译成pig latin ,元音开头的，后面直接加“way",辅音开头的，将辅音移到尾部，再加”ay"
+    //  难点在于： 辅音可能是一个字母，也可能是两个字母；
+    //认为当前两个非元音，第三个元音，认为辅音两个字母；第一个非元音，第二个元音，辅音一个字母
+      function translate(str) {
+            var arr = str.split("");
+            var newstr ="";
+            if(arr[0]== "a"||arr[0]=="e"||arr[0]=="i"||arr[0]=="o"||arr[0]=="u"){
+                arr.push("way");
+            }else if(arr[1]== "a"||arr[1]=="e"||arr[1]=="i"||arr[1]=="o"||arr[1]=="u"){
+                arr.push(arr[0],"ay");
+                arr.shift();
+                
+            }else if(arr[2]== "a"||arr[2]=="e"||arr[2]=="i"||arr[2]=="o"||arr[2]=="u"){
+                arr.push(arr[0],arr[1],"ay");
+                arr.shift();
+                arr.shift();
+            }
+            newstr= arr.join("");
+            
+            
+            return newstr;
+            }
+                
+    
+    
+    </script>
+
+</head>
+<body>
+    
+</body>
+</html>
