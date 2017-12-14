@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>DOM 节点创建删改</title>
+    
+    <script>
+    // document.createElement("标签") 新创建的子节点并没有变化，只有插入以后才有变化
+    // 父级.appendChild(子节点)  1.从原来父级删除，2 在新父级最后插入
+    // 父级.insertBefore（子节点，在谁之前）
+    // 父级.removeChild(子节点)
+
+        window.onload = function(){
+            var oli = document.createElement("li");
+            var oul = document.getElementById("ul1");
+           oul.appendChild(oli);
+            oul.insertBefore(oli,oul[0]);
+            oul.removeChild(oli);
+
+
+        };
+    
+    
+    </script>
+
+
+
+
+</head>
+<body>
+    <div>
+        <ul id = "ul1">
+        </ul>
+       
+    </div>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>事件绑定</title>
+    <!--   事件绑定： IE6-8  attachEvent(事件名称，函数) ，事件名称带on
+             FF chrome addEventListener(事件名称，函数，捕获false)    事件名称不带 on 
+           事件解除：detachEvent(事件名称，函数)
+                    removeEventListener(事件名称，函数，捕获)--> 
+    <script>
+        window.onload = function(){
+            var btn = document.getElementById("btn");
+            addEvent(btn,"click",clickevent);
+            btn.removeEventListener("click",clickevent,false);
+             //取消事件绑定只能是有名称的函数，匿名函数无法取消
+        };
+
+        function clickevent(){
+            alert("aaa");
+        }
+
+       function addEvent(obj,ev,fn){
+            if(obj.attachEvent){
+                obj.attachEvent('on'+ev,fn);
+            }else{
+                obj.addEventListener(ev,fn,false);
+            }
+         }   
+    </script>
+</head>
+<body>
+    <input id ="btn" type="button"  value = "点击"/>
+</body>
+</html>
