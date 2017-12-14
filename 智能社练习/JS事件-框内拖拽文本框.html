@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>框内拖拽文本框</title>
+    <style>
+    #div1 {
+        width: 700px;
+        height: 700px;
+        background: gray;
+        position: relative;
+    }
+    #div2 {
+        width: 100px;
+        height: 100px;
+        background: red;
+        position: absolute;
+    }
+    </style>
+    <script>
+        window.onload = function(){
+            var div1 = document.getElementById("div1");
+            var div2 = document.getElementById("div2");
+            div2.onmousedown = function(ev){
+                var oev = ev||event;
+                var xdis = oev.clientX - div2.offsetLeft;
+                var ydis = oev.clientY - div2.offsetTop;
+
+                document.onmousemove =function(ev){
+                    var oev = ev||event;
+                    var l = oev.clientX - xdis;
+                    var t = oev.clientY - ydis;
+                    if(l<50){ //50磁性吸附效果
+                        l = 0;
+                    }
+                    if(l>div1.offsetWidth - div2.offsetWidth -50){//-50磁性吸附效果
+                        l = div1.offsetWidth - div2.offsetWidth;
+                    }
+                    if(t <50){//磁性吸附效果
+                        t = 0;
+                    }
+                    if(t > div1.offsetHeight - div2.offsetHeight -50 ){//磁性吸附效果
+                        t = div1.offsetHeight - div2.offsetHeight;
+                    }
+                    div2.style.left = l + "px";
+                    div2.style.top = t + "px";
+                };
+
+                document.onmouseup = function(){
+                    document.mousemove = null;
+                    document.onmouseup = null;
+                };
+            };
+        };
+    </script>
+</head>
+<body>
+    <div id ="div1">
+        <div id ="div2"></div>
+    </div>
+    
+</body>
+</html>

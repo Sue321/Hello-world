@@ -1,0 +1,124 @@
+<!-- document 第一个子节点 ！文档声明
+         第二个子节点  html
+body 的默认大小与内容有关 -->
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>JS事件</title>
+    <style>
+        body {
+            height: 2000px;
+            width: 2000px;
+        }
+       
+        /* #div3 {
+            width: 100px;
+            height: 100px;
+            position: absolute;
+        } */
+        div {
+            width: 10px;
+            height: 10px;
+            position: absolute;
+            background: red;
+            
+        }
+    </style>
+    <script>
+//    事件对象event，IE浏览器中
+    window.onload = function(){
+        // var div3 = document.getElementById("div3");
+        // var scrollTop = document.documentElement.scrollTop||document.body.scrollTop;
+        // var scrollLeft = document.documentElement.scrollLeft||document.body.scrollLeft;
+        // document.onmousemove = function(ev){
+        //     var oEvent = ev||event;
+        //     div3.style.left =scrollLeft + oEvent.clientX + "px"; //oEvent.clientX可视区x坐标
+        //     div3.style.top = scrollTop + oEvent.clientY + "px"; //oEvent.clientY可视区y坐标
+        // };
+
+
+
+//一串div随着鼠标移动
+// offsetLeft 获取的是相对于父对象的左边距
+// left 获取或设置相对于 具有定位属性(position定义为relative)的父对象 的左边距
+// 如果父div的position定义为relative,子div的position定义为absolute，那么子div的style.left的值是相对于父div的值，
+// 这同offsetLeft是相同的，区别在于：
+// 1. style.left 返回的是字符串，如28px，offsetLeft返回的是数值28，如果需要对取得的值进行计算，
+// 还用offsetLeft比较方便。
+// 2. style.left是读写的，offsetLeft是只读的，所以要改变div的位置，只能修改style.left。
+        var adiv = document.getElementsByTagName("div");
+        document.onmousemove = function(ev){
+            var oev = ev||event;
+            for(var i =adiv.length-1;i>0;i--){
+            adiv[i].style.left = adiv[i-1].offsetLeft +"px";
+            adiv[i].style.top = adiv[i-1].offsetTop +"px";
+             }
+            adiv[0].style.left = oev.clientX + "px";
+            adiv[0].style.top = oev.clientY +"px";
+
+        }
+//键盘事件
+        document.onkeydown = function(ev){
+            var oev = ev||event;
+
+            alert(oev.keyCode);//键盘按键： 左移37 上移 38 右移 39 回车13
+        };   //oev.ctrlKey  oev.shiftKey oev.altKey判断ctrl,shift,alt是否按下
+        
+    };
+
+
+
+//验证document代表整个网页
+//内容为空时，body为空
+        // document.onclick = function(ev){
+        //     var oEvent = ev|| event;   //事件对象兼容表示
+        //     alert(oEvent.clientX + " , " + oEvent.clientY);
+        // };
+    
+//事件冒泡： 事件从子节点向父节点传递，直到document为止
+
+          // oEvent.cancelBubble =true; 取消冒泡
+
+    </script>
+    
+
+
+</head>
+<body>
+    <!-- <div id = "div1" style = "background : red;" onclick = " alert(this.style.background);">
+        <div id = "div2" style ="background:blue;" onclick = " alert(this.style.background);"> -->
+             <!-- <div id = "div3" style ="background: green;" onclick = " alert(this.style.background);"></div>  -->
+        <!-- </div>
+    </div> -->
+
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+
+
+
+</body>
+</html>

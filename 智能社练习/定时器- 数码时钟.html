@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>定时器</title>
+    <style>
+        #container {
+            
+            height: 200px;
+            line-height: 100px;
+            font: 45px "microsoft yahei" ;
+            color: rgb(177, 172, 172);
+            text-align: center;
+            margin: 100px auto;
+           
+        }
+
+        #container #year {
+            width: 150px;  
+            display: block;
+            margin-left: 30%; 
+            margin-bottom: 20px;
+        }
+        
+        #container>div {
+            width: 100px;
+            height: 70px;
+            line-height: 70px;
+            display: inline-block;
+            color: white;
+            background-color: gray;
+            border-radius: 10px;
+            
+        } 
+    
+    </style>
+
+    <script>
+ //介绍间隔型定时器 setInterval(do , time);设置每隔time(单位 ms) 执行一次do
+ //延时型定时器   setTimeout(do,time);设置time(单位 ms) 后执行 do，只执行一次
+ //通过定时器制作数码时钟  
+    // timer1 = setInterval(show,1000);
+    // timer2 = setTimeout(show,3000);
+    // function show(){
+    //     alert("执行");
+    // }
+    // clearTimeout(timer1);//清除定时
+    // clearInterval(timer2);//清除定时
+
+//-----------Date 对象-----------------------------
+//    var odate = new Date();
+//     console.log(odate.getFullYear());//获取年份
+//     console.log(odate.getMonth()+1); //获取月份，但是记得要加1
+//     console.log(odate.getDate());  //获取日期
+//     console.log(odate.getDay());  //获取周几
+    // date 方法得到的都是数字，不是字符串
+
+
+
+//--------------数码时钟的制作-------------------
+//制作思路
+//显示时间需要3个盒子，时、分、秒各1个，
+//通过date对象获取当前时间，
+//如何将目前的时间与显示的数字联系起来？ 
+// 方法： 将目前的时间时分秒分别存到是哪个变量里，然后将变量的各位数字传给对应盒子
+// 如何时钟显示自动更新？ 定时器，每隔一秒执行一次上述操作
+
+window.onload = function(){
+    function toDou(n){  //解决单个数字的问题，9 -》 09
+        if(n<10){
+            return "0"+n;
+        }else{
+            return n;
+        }
+    }
+    function show(){
+        var odate = new Date();
+        var year = odate.getFullYear();
+        var hour = odate.getHours();
+        var minute = odate.getMinutes();
+        var second = odate.getSeconds();
+        var yshow = document.getElementById("year");
+        var hshow = document.getElementById("hour");
+        var mshow = document.getElementById("miu");
+        var sshow = document.getElementById("sec");
+        yshow.innerHTML = year;
+        hshow.innerHTML = toDou(hour);
+        mshow.innerHTML = toDou(minute);
+        sshow.innerHTML = toDou(second);
+
+    }
+
+    setInterval(show, 1000);
+    show();  //解决刷新后出现空数的问题
+
+ };
+
+
+
+
+    </script>
+</head>
+<body>
+   
+    <div id = "container">
+        <div id = "year"></div>
+        <div id = "hour"></div>
+        :
+        <div id = "miu"></div>
+        :
+        <div id = "sec"></div>
+    </div>
+</body>
+</html>

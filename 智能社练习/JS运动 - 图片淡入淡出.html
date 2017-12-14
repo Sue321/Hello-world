@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>JS运动 - 图片淡入淡出</title>
+    <style>
+     #div1 {
+        width : 200px;
+        height: 200px;
+         filter: alpha(opacity:30);      /*IE */
+         opacity: 0.3;       /*兼容火狐，chrome */
+        /* 两种透明度的表示方法，不同浏览器中 */
+      } 
+
+    img {
+        width : 200px;
+        height: 200px;
+    }
+    
+    </style>
+    
+    <script>
+        window.onload = function(){
+            var div1 = document.getElementById("div1");
+            div1.onmouseover = function(){
+                change(100);
+            };
+            div1.onmouseout = function(){
+                change(30);
+            };
+        };
+
+        var timer = null;
+        var alpha = 30;
+        function change(itarget)
+        {
+            var div1 = document.getElementById("div1");
+            clearInterval(timer);
+            timer = setInterval(function(){
+                     var speed =0;
+                    if(alpha <= itarget){
+                        speed = 10;
+                    }else{
+                        speed = -10;
+                    }
+
+                    if(alpha == itarget){
+                      clearInterval(timer);
+                    }else{
+                        alpha = alpha + speed;
+                        div1.style.filter = "alpha(opacity:" + alpha + ")"; // IE
+                        div1.style.opacity = alpha/100;  //兼容火狐，chrome
+                    }  
+                },30);
+            
+        }
+
+
+
+    </script>
+</head>
+<body>
+    <div id ="div1">
+        <img src = "images/lyc1.jpg" />
+    </div>
+</body>
+</html>

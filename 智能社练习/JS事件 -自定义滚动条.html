@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>自定义滚动条</title>
+    <style>
+        #parent {
+            width : 600px;
+            height: 20px;
+            background: gray;
+            position: relative;
+        }
+        #son {
+            width: 20px;
+            height: 20px;
+            background: black;
+            position: absolute;
+
+        }
+        #container {
+
+            width: 300px;
+            height: 300px;
+            position: relative;
+            top: 30px;
+            padding: 20px;
+            background: gray;
+            overflow: hidden;
+        }
+        #txt {
+            width: 300px;
+            line-height: 20px;
+            position: absolute;
+            top: 10px;
+        }
+    
+    </style>
+
+    <script>
+    window.onload = function(){
+        var div1 = document.getElementById('parent');
+        var div2 = document.getElementById("son");
+
+        var container = document.getElementById("container");
+        var txt = document.getElementById("txt");
+        div2.onmousedown = function(ev){
+            var oev = ev||event;
+            var xdis = oev.clientX - div2.offsetLeft ;
+            var scale = div1.offsetWidth - div2.offsetWidth;
+            
+            document.onmousemove = function(ev){
+                var oev = ev||event;
+                var l = oev.clientX - xdis ;
+    
+                if(l < 0)
+                {
+                    l =0;
+                }
+                if(l > scale){
+                    l = scale;
+                }
+               
+                div2.style.left = l + 'px';
+                txt.style.top = - (l/scale)*(txt.offsetHeight - container.offsetHeight) +'px';
+
+            };
+            
+            document.onmouseup = function(){
+                document.onmousemove =null;
+                document.onmmouseup = null;
+            };
+            return false;
+        };
+    };    
+    
+    </script>
+</head>
+<body>
+    <div id = "parent">
+        <div id = "son"></div>
+    </div>
+    <div id ="container">
+        <div id ="txt">
+                电子科技大学
+                （University of Electronic Science and Technology of China）
+                简称电子科大，坐落于有“天府之国”之称的成都市，
+                由中华人民共和国教育部直属，位列“211工程”、“985工程”，
+                入选国家“2011计划”、“111计划”、“卓越工程师教育培养计划”，两电一邮成员，
+                设有研究生院，是一所以电子信息科学技术为核心的全国重点大学，被誉为“
+                中国电子类院校的排头兵”。
+                电子科技大学原名成都电讯工程学院，是1956年在周恩来总理的亲自部署下，
+                由交通大学（现上海交通大学、西安交通大学）、南京工学院（现东南大学）、
+                华南工学院（现华南理工大学）的电讯工程有关专业合并创建而成。1960年，
+                被中共中央列为全国重点高等学校；1961年，被中共中央确定为七所国防工业院校之一。
+                1988年，更名为电子科技大学。1997年，被确定为国家首批“211工程”建设的重点大学。
+                2000年，由原信息产业部主管划转为教育部主管。2001年，进入国家“985工程”重点建设
+                大学行列。
+                根据2015年1月学校官网显示，学校设有清水河、沙河、九里堤三个校区，占地面积5000
+                余亩；
+                设有22个学院（部），56个本科专业；有各类全日制在读学生33000余人，其中博士、
+                硕士研究生12000余人；有教职工3800余人，其中专任教师2100余人，教授445人。
+        </div>
+    </div>
+</body>
+</html>

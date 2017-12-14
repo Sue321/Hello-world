@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>复选框</title>
+    <script>
+    window.onload = function(){
+        var all = document.getElementById("全选");
+        var allno = document.getElementById("不选");
+        var opposite = document.getElementById("反选");
+        var container = document.getElementById("选项");
+        var choice = container.getElementsByTagName("input");
+        all.onclick = function(){
+            for(var i =0; i<choice.length;i++){
+            choice[i].checked = true ;
+            }
+        };
+
+        allno.onclick = function(){
+            for(var i =0; i<choice.length;i++){
+            choice[i].checked = false ;
+            }
+        };
+
+        opposite.onclick = function(){
+            for(var i =0; i<choice.length;i++){
+                if(choice[i].checked){
+                    choice[i].checked = false ;
+                }else{
+                choice[i].checked = true ;
+                }     
+            }
+        };
+      
+    };
+    
+    
+    
+    </script>
+</head>
+<body>
+    <input type ="button" value = "全选" id ="全选"/>
+    <input type  ="button" value = "不选" id ="不选"/>
+    <input type = "button" value = "反选" id = "反选"/>
+  <div id = "选项">
+    <input type = "checkbox" />
+    <input type = "checkbox" />
+    <input type = "checkbox" />
+    <input type = "checkbox" />
+    <input type = "checkbox" />
+    <input type = "checkbox" />
+    <input type = "checkbox" />
+    <input type = "checkbox" />
+ </div>
+
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>DOM-表格排序</title>
+    <script>
+        window.onload = function(){
+        //功能： 点击排序按钮，将表格按照 序号排序
+        //方法：
+        //1. 将每一行的对象 赋给一个数组， 
+        //因为rows 或者getElementsByTagName返回的虽然是数组,但不是Array不能调用sort
+        //2.对数组进行sort排序（比较的是每行第一列序号的大小），
+        //3.将排序好的数组的每行对象依次 appendChild 插入 表格中   
+            var obtn = document.getElementById("btn1");
+            var ota = document.getElementById("t1");
+            var otbody = ota.tBodies[0];
+            var atr = otbody.rows;
+            var arr = [];
+            obtn.onclick = function(){
+                for(var i =0 ;i < atr.length;i++){
+                    arr[i]= atr[i];
+
+                }
+                arr = arr.sort(function(tr1,tr2){
+                    var n1 = parseInt(tr1.cells[0].innerHTML);
+                    var n2 = parseInt(tr2.cells[0].innerHTML);
+                    return n1-n2;
+                });
+
+                for(var i =0; i< atr.length;i++){
+                    otbody.appendChild(arr[i]);
+                }    
+
+            };
+
+
+        };
+    
+    </script>
+</head>
+<body>
+    
+        <input type = "button" id = "btn1" value = "排序" />
+        <table id = "t1" border=1px width = 300px>
+            <thead>
+                <td>序号</td>
+                <td>姓名</td>
+                <td>年龄</td>
+            </thead>
+            <tBody>
+               <tr>
+                    <td>3</td>
+                    <td>王二小</td>
+                    <td>56</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>张伟</td>
+                    <td>34</td>
+                </tr>
+                
+                <tr>
+                     <td>6</td>
+                     <td>李世娜</td>
+                     <td>27</td>
+                    
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>刘琦</td>
+                     <td>24</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>郭鹏</td>
+                    <td>42</td>
+                </tr>
+               
+                <tr>
+                    <td>1</td>
+                    <td>张三</td>
+                    <td>12</td>
+                    </tr>
+            </tBody>
+        </table>
+</body>
+</html>

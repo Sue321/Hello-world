@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>DOM练习</title>
+    <style>
+   
+    
+    </style>
+    
+    <script>
+        // var a = document.getElementById("erweima");
+        // var img = document.getElementById("image");
+        // a.onclick = function(){
+        //     img.src= a.href;
+        //     return false;
+        // };
+      // IE9以下 对DOM 支持10%, IE9 以上支持大部分；
+      // chrome 60% ,
+      // FF 99%支持
+      // 只能由document调用  getElementById()   
+          // 返回数组： getElementsByTagName()， getElementsByClassName()
+          //chidNodes 只算直接子节点
+          //nodeType 节点类型： 元素节点 1，属性节点 2 ， 文本节点 3， ，兼容
+          //首尾子节点： 存在兼容性问题，包括空文本节点 firstChild,lastChild 低版本适用
+                               //firstElementChild, lastElementChild 高版本适用
+        //兄弟节点：存在兼容性问题 nextSibling , previousSibling低版本适用
+                      //nextElementSibling ,previousElementSibling 高版本适用
+          //parentNode  例子： 点击子节点 隐藏整个父节点
+          // offsetParent  返回子节点定位的父节点，与样式有关
+          //属性操作： .style    ["display"]  
+          // getAttribute("value") setAttribute("value","值")  removeAttribute(名称)
+      
+      
+      window.onload = function(){
+          var  oul = document.getElementById("ul1");
+        //   console.log(oul.childNodes);
+        //   console.log(oul.childNodes.length); 
+          //chrome 和 360 浏览器 显示 9 个节点，包括空文本节点
+          
+          //  console.log(oul.firstElementChild);
+        oul.firstElementChild.onclick = function(){
+            this.parentNode.style.display = "none";
+        };
+          
+         var txt = document.getElementById("txt");
+         var btn = document.getElementById("btn");
+         btn.onclick = function(){
+            txt.setAttribute("value","red");
+         };
+         
+        
+       
+      };
+    
+    </script>
+
+
+
+</head>
+<body>
+    <!-- <a href="../images/erweima.png"id="erweima">二维码</a>
+    <img src="#" id="image" /> -->
+    <input id ="txt" type = "text" />
+    <input id = "btn" type = "button" />
+        <ul id = "ul1">
+            <li>隐藏</li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+
+
+
+</body>
+
+
+
+
+</html>

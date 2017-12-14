@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>选项卡</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #subnav1, 
+        #subnav2,
+        #subnav3 {
+            width : 60px;
+            height: 30px;
+            display: inline-block;
+            background-color: #ccc;
+            margin: 0px;
+        }
+     #nav .show {
+         width: 200px;
+         height: 150px;
+         background-color: #ccc;
+         margin: 5px;
+         display: none;
+         
+     }
+     #nav .active {
+        background-color: yellow;
+     }
+    
+    </style>
+    <script>
+    //如果把事件写在行间，称为行间事件；
+    //将选项卡事件提取到script中
+    //鼠标移到导航栏相应选项，显示区域显示相应的内容并且导航栏背景变色
+    window.onload = function (){
+        var nav = document.getElementById("nav");
+        var show = nav.getElementsByClassName("show");
+        var subnav = nav.getElementsByTagName("div");
+        for(var i=0; i< subnav.length;i++){
+            subnav[i].index = i; //需要知道当前鼠标移到的按钮的下标
+            subnav[i].onmouseover = function(){
+                for(var j=0;j < show.length;j++){
+                    subnav[j].className="";
+                    show[j].style.display = "none";
+                
+                    //显示之前，隐藏所有的显示;当前选中背景变色前，先清除所有颜色
+                }
+                this.className = "active";
+                show[this.index].style.display = "block";
+            };
+
+            subnav[i].onmouseout = function(){
+                this.className ='';
+                show[this.index].style.display = "none";
+                
+            };
+        }
+      
+    };
+
+    
+   
+    
+    </script>
+</head>
+<body>
+    <div id ="nav">
+        <div id="subnav1" class ="active">选项一</div>
+        <div id="subnav2">选项二</div>
+        <div id="subnav3">选项三</div>
+        <section class ="show">1</section>
+        <section class ="show">2</section>
+        <section class ="show">3</section>
+    </div>
+    
+</body>
+</html>

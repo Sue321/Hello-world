@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>延时提示框</title>
+    <style>
+        div {
+            float: left;
+            margin: 10px;
+        }
+        #nav1 {
+            width: 50px;
+            height: 40px;
+            background-color: gray;
+
+        }
+        #show {
+            width: 100px;
+            height: 100px;
+            background-color: yellow;
+            display: none;
+        }
+    </style>
+
+    <script>
+
+    //延时提示框，不仅在鼠标离开导航栏或者提示框时，延时提示框的消失，
+    //还实现在导航栏与提示框之间切换时，不会有闪烁
+    //  事件可以用连等来简化代码
+    window.onload = function(){
+        var nav1 = document.getElementById("nav1");
+        var show = document.getElementById("show");
+        var timer = null;
+
+        nav1.onmouseover = show.onmouseover = function(){
+            clearTimeout(timer);
+            show.style.display = "block";
+        };
+
+        nav1.onmouseout = show.onmouseout = function(){
+            timer = setTimeout(
+                function(){
+                show.style.display = "none";} , 500);
+        };
+      
+ 
+    //    show.onmouseover = function(){
+    //        clearTimeout(timer); //清除nav1mouseout的定时器
+    //   };
+
+    //   show.onmouseout = function(){
+    //      timer = setTimeout(
+    //             function(){
+    //             show.style.display = "none";} , 500);
+    //     };
+      };
+
+
+
+
+
+
+ 
+    
+    
+    
+    </script>
+    
+</head>
+<body>
+    <div id = "nav1"></div>
+    <div id = "show"></div>
+</body>
+</html>
