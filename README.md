@@ -1,2 +1,1 @@
-# Hello-world
-First try github
+记录自己的进步
