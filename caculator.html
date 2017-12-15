@@ -160,7 +160,8 @@
                  {
                    btns[j].className = "";
                  }
-          var arr = (display.innerHTML.match(/[\d+\.?\d+?]+|\+|-|\*|\/|%/g));
+          var arr = (display.innerHTML.match(/[\d+\.?\d+?]|\+|-|\*|\/|%/g));
+        //[\d+ 多个数字 \.? 有或没有小数点  \d+? 有或没有多个数字 ]  \+加 -减  \*乘  \/除  %取余
           display.innerHTML =pre(arr);
       };
       
