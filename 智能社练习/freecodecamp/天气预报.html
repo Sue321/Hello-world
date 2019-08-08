@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>聚合数据天气应用</title>
+     <style>
+        body {
+            width: 80%;
+            margin: 10px auto;
+            text-align: center;
+            
+        }
+        a {
+            text-decoration: none;
+            color: #666;
+        }
+        h3,h4{
+            font-weight: 100;
+        }
+
+         #header {
+            height: 50px;
+         }
+       #header span:first-child {
+            color: #666;
+            font: 34px "microsoft yahei";
+        }
+         #header span:last-child {
+            color: orange;
+            font: 32px "songti";
+            }
+        #today {
+            height: 300px;
+            font: 16px "microsoft yahei"; 
+            }
+        #future {
+            height: 300px;
+            font: 16px "microsoft yahei"; 
+            }
+     
+     
+     </style>
+
+     <script>
+      window.onload = function(){
+        var t = document.getElementById("today");
+        var todayIndex = t.getElementsByTagName("h4");
+        var btn = document.getElementById("btn");
+        btn.onclick = function()
+        {
+            if(window.XMLHttpRequest){
+                  var xhr = new XMLHttpRequest();
+            }
+            else
+            {
+                  var xhr = new ActiveObject("Microsoft.XMLHttp");
+            }
+            xhr.open('GET',"http://v.juhe.cn/weather/index",format=1, cityname = '成都', dtype="json" , key="9c2afa6ee0ef12476e1cea599bfddb29",true);
+            xhr.send();
+            xhr.onreadystatechange = function()
+            {
+                if(xhr.readyState == 4)
+                {
+                if(xhr.status == 200)
+                { 
+                    var txt = xhr.responseText;
+                    var res = "";
+                    //json转成HTML
+                    txt.forEach(function(val){
+                        var keys = Object.keys(val);
+                        //Object.keys(object)返回object的可枚举属性和方法名称，返回数组
+                        keys.forEach(function(key){
+                           res += key + ":" + val[key];
+                        });
+                    });
+                  t.innerHTML = res;
+                
+                
+                
+                }
+            
+                }
+            
+            }
+        };
+  
+};
+     
+     </script>
+
+
+
+</head>
+<body>
+        <div id ="header">
+                <span><a href = "" id = "btn"/>聚合数据</a></span>
+                <span>天气应用</span>
+        </div>
+       <hr />
+         <div id ="today">
+                <h3>今天天气</h3>
+                <h4>湿度：</h4>
+                <h4>穿衣指数：</h4>
+                <h4>洗车指数：</h4>
+                <h4>旅行指数：</h4>
+                <h4>锻炼指数：</h4>
+                <h4>紫外线指数：</h4>
+              
+        </div>
+        <hr />
+        <div id = "future">
+                 <h3>未来6天天气</h3>
+         </div>
+</body>
+</html>

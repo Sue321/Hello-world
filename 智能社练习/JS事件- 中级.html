@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>JS事件 - 中级</title>
+    <style>
+        #div1 {
+            width: 200px;
+            height: 200px;
+            position:absolute;
+            display:none;
+        }
+    
+    </style>
+    <script>
+    // 默认行为阻止
+    // return  false；
+    window.onload = function(){
+        var div1 = document.getElementById("div1");
+        document.oncontextmenu = function(ev){
+        var oev = ev||event;
+        div1.style.display ="block";
+        div1.style.left = oev.clientX +"px"; //不要忘记加上 px,  left,top返回值是字符串
+        div1.style.top = oev.clientY +"px";
+        return false;    //阻止默认行为，无法出现右键菜单
+    };
+
+    };
+    
+    </script>
+</head>
+<body>
+    <div id = "div1" >
+        <ul>
+            <li>1222</li>
+            <li>23333</li>
+            <li>3111</li>
+        </ul>
+    </div>
+</body>
+</html>

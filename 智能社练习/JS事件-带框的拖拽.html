@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>带框拖拽</title>
+    <style>
+        #div1 {
+            width: 200px;
+            height: 200px;
+            position: absolute;
+            background: red;
+        }
+        .box {
+            width: 198px;
+            height: 198px;
+            position: absolute;
+            border: 1px dashed black;
+        }
+    
+    
+    </style>
+    <script>
+        //效果： 拖拽文本框时，拖的是一个虚线框，松开鼠标后，文本框才与虚线框重合
+        //方法： 1.在鼠标按下时，新建一个div ，添加边框类，
+        //      2 .移动鼠标时，移动的是虚线框div，鼠标松开时，文本框移到该位置
+    window.onload = function(){
+        var div1 = document.getElementById("div1");
+        div1.onmousedown = function(ev){
+            var oev  = ev||event;
+            var div2 = document.createElement("div");
+            div2.className ="box"; //添加类名
+            document.body.appendChild(div2);
+            div2.style.left = div1.offsetLeft + 'px';
+            div2.style.top = div1.offsetTop + 'px';
+
+            var xdis = oev.clientX - div1.offsetLeft;
+            var ydis = oev.clientY - div1.offsetTop;
+
+            document.onmousemove = function(ev){
+                var oev = ev||event;
+                div2.style.left = oev.clientX - xdis +"px";
+                div2.style.top = oev.clientY - ydis + "px";
+            };
+
+            document.onmouseup = function(){
+                div1.style.left = div2.offsetLeft + 'px';
+                div1.style.top = div2.offsetTop + 'px';
+                document.onmousemove = null;
+                document.onmouseup = null;
+                document.body.removeChild(div2); 
+                //必须删除，否则只能移动一次，因为div2已经存在
+            };
+
+            return false;
+        };
+    };
+    
+    
+    </script>   
+</head>
+<body>
+    <div id = "div1"></div>
+</body>
+</html>

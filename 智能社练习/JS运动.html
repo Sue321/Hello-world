@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>JS 运动基础</title>
+    <style>
+    #div1 {
+        background: gray;
+        width: 100px;
+        height: 100px;
+        position: absolute;
+        left: 0px;
+        top: 70px;
+    }
+    
+    
+    </style>
+
+    <script>
+    
+    window.onload = function(){
+        var btn = document.getElementById("btn");
+        var div1 = document.getElementById("div1");
+        var timer =null;
+        btn.onclick = function(){
+            var speed = 8;
+              if(div1.offsetLeft <= 300){
+                speed = 10;
+               }else{
+                speed = -10;
+               }
+            clearInterval(timer); //运动之前清除定时器
+            timer = setInterval(function(){
+               //运动框架 １.　if/else　将运动与停止分离
+                    // 2. 运动之前清除定时器
+                if(Math.abs(300-div1.offsetLeft) <= 10){
+                    clearInterval(timer);
+
+                }else{
+                    div1.style.left = div1.offsetLeft + speed +"px";
+                }
+            
+            },30);
+            };
+            
+        };
+
+       
+        
+  
+    
+    </script>
+
+
+
+</head>
+<body>
+    <input type = "button" id = "btn" value = "开始" />
+    
+    <div id = "div1">
+
+    </div>
+</body>
+</html>

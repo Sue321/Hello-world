@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>表格查找排序</title>
+</head>
+<script>
+
+    
+    window.onload = function(){
+        var otable = document.getElementById("t1");
+            // var otbody = otable.getElementsByTagName("tBody")[0];
+            // otbody.style.backgroundColor = "gray";
+            // otable.tBodies[0].rows[0].style.backgroundColor = "gray";
+            // otable.tBodies[0].rows[1].cells[0].style.color = "red";
+    //获取表格元素 tBodies[] , rows[] ,cells[] ,tHead ,tFoot
+
+        var otxt = document.getElementById("txt");
+        var obtn = document.getElementById("btn1");
+        
+        obtn.onclick = function (){
+
+           
+         for(var i = 0; i< otable.tBodies[0].rows.length; i++){
+            var  tr = otable.tBodies[0].rows[i].cells[1].innerHTML;
+            var arr = otxt.value.split(" ");
+            // 多关键字查询
+            otable.tBodies[0].rows[i].style.display = "none";
+            for(var j =0; j<arr.length;j++){
+                //if (otxt.value== tr[i].cells[1].innerHTML){
+              if (tr.search(arr[j]) != -1){
+                 //str.search(stra)返回字符串所在下标，如果没有返回-1
+                 otable.tBodies[0].rows[i].style.display = "block";
+                 //otable.tBodies[0].rows[i].style.background = "red";
+
+              }
+
+            }
+            }
+            
+        };
+
+    };
+
+
+</script>
+<body>
+       姓名： <input type = "text" id = "txt" />
+        <input type = "button" id = "btn1" value = "搜索" />
+        <table id = "t1" border=1px width = 300px>
+            <thead>
+                <td>序号</td>
+                <td>姓名</td>
+                <td>年龄</td>
+            </thead>
+            <tBody>
+                <tr>
+                    <td>1</td>
+                    <td>张三</td>
+                    <td>12</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>张伟</td>
+                    <td>34</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>王二小</td>
+                    <td>56</td>
+                </tr>
+                <tr>
+                        <td>4</td>
+                        <td>刘琦</td>
+                        <td>24</td>
+                </tr>
+                <tr>
+                        <td>5</td>
+                        <td>郭鹏</td>
+                        <td>42</td>
+                </tr>
+                <tr>
+                        <td>6</td>
+                        <td>李世娜</td>
+                        <td>27</td>
+                    
+                </tr>
+                <tr>
+
+                </tr>
+            </tBody>
+        </table>
+</body>
+</html>

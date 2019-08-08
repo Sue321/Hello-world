@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>只能输入数字的输入框</title>
+    <script>
+    //没有实现该效果，不知原因?
+    window.onload = function(){
+        var otxt = document.getElementById("txt1");
+        otxt.onkeydown = function(ev){
+             var oev = ev ||event;
+            // if( oev.keyCode >105 || oev.keyCode<48){
+            //     return false;
+            // }else
+             if(oev.keyCode!=8 && (oev.keyCode< 48 || oev.keyCode>57)){
+                return false;
+             }
+        };
+    };
+    
+    </script>
+</head>
+<body>
+    <input type = "text" id = "txt1" />
+
+</body>
+</html>

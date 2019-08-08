@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>JS运动 - 分享框</title>
+
+    <style>
+        #div1 {
+            width: 150px;
+            height: 200px;
+            background: skyblue;
+            position: absolute;
+            left: -150px;
+            top: 0px;
+
+        }
+        #share {
+            width: 20px;
+            height: 60px;
+            line-height: 20px;
+            background: skyblue;
+            position: absolute;
+            right: -20px;
+            top: 60px;
+        }
+    </style>
+    <script>
+      // 运动框架的运用，要注意函数的合并，onmouseover .onmouseout 用目标参数来区分
+    window.onload = function(){
+        var div1 = document.getElementById("div1");
+    
+        div1.onmouseover = function(){
+            move(0);
+        };
+       
+        div1.onmouseout = function(){
+            move(-150);
+        };
+       
+    };
+
+     var timer = null;
+
+     function move(itarget){
+        var div1 = document.getElementById("div1");
+           
+            var speed = 0;
+            if(div1.offsetLeft <= itarget){
+                speed = 10;
+            }else{
+                speed = -10;
+            }
+            clearInterval(timer);
+            timer = setInterval(function(){
+                if(div1.offsetLeft == itarget){
+                    clearInterval(timer);
+                }else{
+                    div1.style.left = div1.offsetLeft +speed + "px";
+                     // style.left 总是出错，不能直接写 div.left
+                }
+            },30);
+     }
+    
+
+    </script>
+</head>
+<body>
+    <div id = "div1">
+        <span id = "share">分享到</span>
+    </div>
+</body>
+</html>

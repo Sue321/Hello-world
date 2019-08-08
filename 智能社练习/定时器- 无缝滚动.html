@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>定时器 - 无缝滚动</title>
+    <style>
+    
+    * {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+    
+    #container {
+        margin: 100px auto;
+        width: 800px;
+        height : 160px;
+        background-color: red;
+        position: relative;
+        overflow: hidden;
+    }
+
+    #contianer ul {
+        position: absolute;
+        width: 800px;
+        left: 0px;
+        top : 0px;
+        
+    }
+    #container li {
+        width: 200px;
+        height: 160px;
+        float: left;  
+    }
+    #container img {
+        width: 200px;
+        height: 160px;
+    }
+    </style>
+
+    <script>
+        //无缝滚动原理 ： div不动，ul里一组图片在div里移动，移动ul通过改变left，offsetLeft
+        //div只有四张图片的宽度，ul有两组（8张图片）的宽度
+        //扩展： 向左向右（+2,-2），移入暂停（取消定时），移出继续（重设定时）
+      window.onload = function(){
+          var container = document.getElementById("container");
+          var oul = container.getElementsByTagName("ul")[0];
+          //oul.innerHTML += oul.innerHTML;
+          setInterval(function(){
+             oul.style.left = oul.style.offsetLeft -2 + 'px';// 无效
+          },30);
+      };
+    
+    
+    </script>
+
+
+
+</head>
+<body>
+
+    <div id ="container">
+        <ul>
+            <li><img src="images/lyc1.jpg" alt="1"></li>
+            <li><img src="images/lyc2.jpg" alt="2"></li>
+            <li><img src="images/lyc3.jpg" alt="3"></li>
+            <li><img src="images/lyc4.jpg" alt="4"></li>
+        </ul>
+    </div>
+    
+</body>
+</html>

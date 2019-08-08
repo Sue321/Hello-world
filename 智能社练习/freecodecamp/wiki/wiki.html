@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>wiki</title>
+    <style>
+      @font-face {
+              font-family: 'ico';
+              src: url('fonts/icomoon.eot');
+              src: url('fonts/icomoon.eot'),
+                   url("fonts/icomoon.woff"),
+                   url("fonts/icomoon.ttf"),  
+                   url("fonts/icomoon.svg");
+                /* 对应fonts文件夹中四个文件路径 */
+               font-weight: normal;
+               font-style: normal;
+      }
+
+      body {
+            background: #999;
+            position: relative;
+            color:  white;
+            }
+       #random, 
+       #txt  {
+            position : absolute;
+            height: 40px;
+            border-radius: 10px;
+            text-decoration: none;
+            font: 25px "mocrosoft yahei";
+            }
+
+       #random {
+            top : 300px;
+            left: 700px;
+            }
+
+       #txt {
+            top : 450px;
+            left: 740px;
+            }
+
+       .ico {
+               font-family: "ico";
+               font-size: 60px;
+               color: white;
+               width: 60px;
+               height: 60px;
+               position : absolute;
+               top : 385px;
+               left: 830px; 
+              
+       }
+       a {
+               text-decoration: none;
+               color:  white;
+       }
+    </style>
+
+    <script>
+       window.onload = function(){
+               var random  = document.getElementById("random");
+               var ico = document.getElementsByClassName("ico")[0];
+               var search = ico.getElementsByTagName("a")[0];
+               
+               random.onclick = function(){
+                       random.href = "http://en.wikipedia.org/wiki/Special:Random";
+               };
+               search.onclick = function(){
+                       search.href = "http://www.mediawiki.org/wiki/API:Main_page";
+               };
+       };
+    
+    
+    
+    </script>
+
+
+</head>
+<body>
+        <a  id ="random" href = "">click here for a random article</a> 
+        <div class = 'ico'><a href = ""></a></div>
+        <p id = "txt" >click icon to search</p>
+</body>
+</html>

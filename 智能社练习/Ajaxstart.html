@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ajax</title>
+
+    <script>
+    //服务器： 可以是电脑，可以是手机；
+    // 如何配置自己的服务器:  下载WAMP  文件在 www 文件夹下
+    // get : 通过网址发送请求
+    //         容量小(因为网址长度有限)
+    //         安全性低
+    //         有缓存
+    // post： 不通过网址 http Content
+     //       容量大（2G）
+     //      安全性好一些
+     //       不缓存
+
+    // 1. 创建AJAX对象
+    // 2. 连接到服务器
+    // 3. 发送请求，需要哪个文件
+    // 4. 接收返回值    
+
+    window.onload = function(){
+        var btn = document.getElementById("btn");
+        btn.onclick = function(){
+            var oAjax = new XMLHttpRquest();
+            alert(oAjax);
+        };
+    };
+    // readyState:
+    // 0  未初始化，还没有调用open
+    // 1  调用send ,正在发送请求
+    // 2  载入完成，send完成，已收到全部响应内容
+    // 3  正在解析响应内容
+    // 4  完成，响应内容解析完成，可以在客户端调用了
+    
+
+
+
+
+
+
+
+
+
+
+
+    // function suggestion(str){
+    //     var xmlhttp;
+    //     if(str.length==0){
+    //         document.getElementById("show").innerHTML="";
+    //         return;
+    //     }else{
+    //         if(window.XMLHttpRequest){//IE7+,Firefox ,Chrome ,Safari ,Opera
+    //          xmlhttp = new XMLHttpRequest();
+    //         }else{// IE 5,IE6
+    //          xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+    //     }
+
+    //     xmlhttp.onreadystatechange = function(){
+    //         if(xmlhttp.readState == 4 && xmlhttp.status == 200){
+    //             document.getElementById("show").innerHTML=xmlhttp.responseText;
+    //         }
+    //     }
+    //     xmlhttp.open("GET", "gethint.php?q="+str   ,true);
+    //     xmlhttp.send();
+    //     }
+    // }
+   
+    
+    </script>
+
+
+
+
+</head>
+<body>
+    <!-- <h2>请输入字母 A-Z</h2> -->
+    <input type = "button" id = "btn" />
+    <!-- <h2>建议：<span id ="show"></span></h2> -->
+    
+</body>
+</html>

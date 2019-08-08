@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+    
+    function diff(arr1, arr2) {
+       var newArr = [];
+        // Same, same; but different.
+        //比较两次是因为，当arr2中存在arr1中没有的元素会遗漏；
+        // 单次比较，是本数组中有，另一数组中没有的。但是还存在本数组中没有，另一数组中有的。
+     for(var i =0;i< arr1.length;i++){
+         var isTrue = true;
+   
+        for(var j =0 ;j< arr2.length; j++){
+        
+        if(arr1[i] == arr2[j]){
+             isTrue =false;
+          }   
+
+      }
+      
+      if(isTrue){
+       newArr.push(arr1[i]);
+        }  
+    
+   }
+ 
+    for(var i =0;i< arr2.length;i++){
+     var isTrue = true;
+     
+     for(var j =0 ;j< arr1.length; j++){
+         
+        if(arr2[i] == arr1[j]){
+             isTrue =false;
+          }   
+
+      }
+     
+      if(isTrue){
+       newArr.push(arr2[i]);
+        }  
+    
+   }
+//  --------------使用数组方法的解决方案------------------------------- 
+     var newArr1 = arr1.filter(function(element){
+          return (arr2.indexOf(element) == -1) ;
+                    
+      });
+      var newArr2 = arr2.filter(function(element){
+            return (arr1.indexOf(element)== -1) ;
+      });
+      newArr = newArr1.concat(newArr2);
+  return newArr;
+}
+
+console.log(diff([1, 2, 3, 5], [1, 2, 3, 4, 5]));
+
+    
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

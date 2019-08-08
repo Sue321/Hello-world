@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        // 将字符串中子字符串替换成对应字符串，
+        // 难点在于，如果替换之前首字母大写，替换后也要首字母大写
+
+
+      function myReplace(str, before, after) {
+        var newstr ="";
+        newstr = str.replace(before,after);
+        var arr = newstr.split(" ");
+        //  split 将字符串转换成 字符串数组 
+        var index = arr.indexOf(after);
+        if(before.charCodeAt(0) >=65 &&before.charCodeAt(0)<=90){
+            //   判断首字母是否大写  A-Z  ASCII 编码对应 65-90； a-z   97-122;
+             arr[index] =  arr[index][0].toUpperCase() + arr[index].substring(1,arr[index].length);
+            //    字符串首字母可以直接写 str[0]
+            }
+        newstr = arr.join(" ");
+        
+        return newstr;
+       }
+
+        console.log(myReplace("He is Sleeping on the couch", "Sleeping", "sitting"));
+
+      
+    
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

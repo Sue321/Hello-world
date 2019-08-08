@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>JS事件- 拖拽文本框</title>
+    <style>
+        #div1 {
+            width: 200px;
+            height: 200px;
+            background: skyblue;
+            position: absolute;
+        }
+    
+    </style>
+    <script>
+
+    //实现文本框拖拽，进一步优化防止文本框拖出可视区
+        window.onload = function(){
+            var div1 = document.getElementById("div1");
+            var xdis =0;
+            var ydis =0;
+            //在div 区域内按下鼠标，记录点击位置与文本框的相对位置
+            div1.onmousedown = function(ev){
+                var oev= ev||event;
+                 xdis = oev.clientX - div1.offsetLeft ;
+                 ydis = oev.clientY- div1.offsetTop;
+            //点击之后，移动才动，所以在onmousedown 里面
+            //移动鼠标时，相对位置不变，根据相对位置确定文本框位置
+                document.onmousemove = function(ev){
+                var oev = ev||event;
+                var l = oev.clientX - xdis;
+                var  t = oev.clientY - ydis;
+            // ---------------------优化防止文本框拖出可视区
+                if(l<0){
+                    l=0;
+                }
+                if(t<0){
+                    t =0;
+                }
+                if(l > document.documentElement.clientWidth - div1.offsetWidth){
+                    l = document.documentElement.clientWidth - div1.offsetWidth;
+                }
+                if(t> document.documentElement.clientWidth - div1.offsetHeight){
+                    t= document.documentElement.clientWidth - div1.offsetHeight;
+                }
+            // -----------------------优化防止文本框拖出可视区
+                div1.style.left = l + 'px';
+                div1.style.top = t + 'px';
+
+                 };
+            //点击之后，松开才停止，所以在onmousedown 里面
+                document.onmouseup = function(){
+                document.onmousemove = null;
+                document.onmouseup = null;
+                };
+
+            };
+                
+        };
+    </script>
+</head>
+<body>
+    <div id = "div1">
+
+    </div>
+</body>
+</html>
