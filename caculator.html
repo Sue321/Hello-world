@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>caculator</title>
+    <style> 
+    body {
+         font: 30px "microsoft yahei";
+         margin: 20px auto;
+        }
+
+     #container{
+        width: 300px;
+        height: 480px;
+        margin: 0px auto;
+        padding: 0px;
+        background-color: rgb(102, 101, 101);
+        border: 1px solid black;
+        border-radius: 10px;
+        }
+    .banxin{
+        margin-left: 30px;
+        margin-right: 30px;
+        background-color: azure;
+        text-align: center;
+        font:30px;
+        
+        }
+
+    #display{
+        margin-top: 20px;
+        height: 80px;
+        border: 1px solid black;
+        text-align: right;
+        white-space: initial;
+       word-wrap: break-word; 
+       /* 强制换行，下一行显示 */
+        overflow: hidden;
+        /* 溢出整个盒子隐藏 */
+        }
+     #arith ul{
+        padding:  0px ;
+        }
+
+    li {
+        text-decoration: none;
+        display: inline-block;
+        width: 50px;
+        height: 50px;
+        margin-bottom: 10px;
+        line-height: 50px;
+        
+        }
+    .white {
+      background: rgb(102, 101, 101);
+      /* 点击时，背景变色，除了c与= */
+    }
+ 
+    </style>
+
+    <script>
+
+      function arith(a,b,fn){
+         return fn(a,b);
+      }
+     
+     function add(a,b){
+        return a+b;
+      }
+    function minus(a,b){
+       return a-b;
+    }
+    function mul(a,b){
+      return a*b;
+    }
+    function over(a,b){
+      return a/b;
+    }
+      
+    function hun(a,b){
+      return a%b;
+    }  
+    
+    //将各个按键点击的内容显示出来，但是要去掉一开始的0
+   //如果写成函数，调用时，this是 window对象，不是事件发生对象；因此在show函数添加调用对象obj参数。  
+     function show(obj){   
+        var a = display.innerHTML;
+          if(a == 0){
+             display.innerHTML = obj.innerHTML ; 
+          }else{
+          display.innerHTML = a + obj.innerHTML ;  
+          }
+     }
+    
+    //对输入的内容利用正则表达式进行匹配，数字，运算符都存入数组中
+    //依次对数组每项进行判断，乘除取余运算优先，
+    // 如果遇到运算符则对前一项和后一项进行计算，并用运算的结果来替代这三项，然后迭代判断，
+    // 所以需要截止条件，对于pre()停止条件是，再没有乘除取余运算符，满足就调用later(),进行加减运算
+    // later()的停止条件，是数组中只有一项，因为每次替代到最后只剩最终结果的那一项
+     function pre(arr){
+            var isPre = false;
+            for(var i =0;i< arr.length; i++){
+              if(/\*|\/|%/.test(arr[i])){
+                  isPre = true;;              
+                  if(/\*/.test(arr[i])){
+                     result = arith(arr[i-1],arr[i+1],mul);
+                  }else if(/\//.test(arr[i])){
+                    result = arith(arr[i-1],arr[i+1],over);
+                  }else{
+                    result = arith(arr[i-1],arr[i+1],hun);
+                  }
+                  arr.splice(i-1,3,result);
+                  console.log(arr);
+                  pre(arr);
+               }      
+             }
+             
+             if(!isPre){
+                 later(arr);
+              }
+              return arr[0];
+          }
+          
+       function  later(arr){
+            if(arr.length ==1){
+              return arr[0];
+            }
+            for(var j =0;j < arr.length;j++){
+              if(/\+|-/.test(arr[j])){                
+                  if(/\+/.test(arr[j])){
+                     result = arith(Number(arr[j-1]),Number(arr[j+1]),add);
+                  }else{
+                    result = arith(arr[j-1],arr[j+1],minus);
+                  }
+                  arr.splice(j-1,3,result);
+                  later(arr);
+              }    
+            }
+          }
+      
+  window.onload = function(){
+      var display = document.getElementById("display");
+      var btns = document.getElementsByTagName("li");
+      var arith_clear = document.getElementById("clear");
+      var arith_equal = document.getElementById("equal");
+      var result =0;
+    
+      arith_clear.onclick = function(){
+        for(var j =0;j< btns.length;j++)
+                 {
+                   btns[j].className = "";
+                 }
+        display.innerHTML = 0 ;
+
+      };
+      
+      arith_equal.onclick = function(){
+        for(var j =0;j< btns.length;j++)
+                 {
+                   btns[j].className = "";
+                 }
+          var arr = (display.innerHTML.match(/[\d+\.?\d+?]+|\+|-|\*|\/|%/g));
+        //[\d+ 多个数字 \.? 有或没有小数点  \d+? 有或没有多个数字 ]+尽可能多的匹配  \+加 -减  \*乘  \/除  %取余
+          display.innerHTML =pre(arr);
+      };
+      
+      for(var i =0; i< btns.length;i++){
+        if( i!= 6 && i!=7){
+          btns[i].onclick =  function()
+            {
+               show(this); 
+               //如果写成函数，调用时，this是 window对象，不是事件发生对象；
+               // 因此在show函数添加调用对象参数。
+               for(var j =0;j< btns.length;j++)
+                 {
+                   btns[j].className = "";
+                 }
+               this.className = "white";
+             }           
+        }
+      }
+     
+  };
+
+    
+    </script>
+   
+    
+  </head>
+  <body>
+    <div id="container">
+      <div id="display" class="banxin">
+        0
+      </div>
+      
+      <div id ="arith" class="banxin">
+        <ul>
+          <li id="add"> + </li>
+          <li id="minus"> - </li>
+          <li id="mul">*</li>
+          <li id="over">/</li>
+          <li id="hun">%</li>
+          <li id="dot">.</li>
+          <li id="clear">c</li>
+          <li id="equal">=</li>
+
+          <li id="1">1</li>
+          <li id="2">2</li>
+          <li id="3">3</li>
+          <li id="4">4</li>
+          <li id="5">5</li>
+          <li id="6">6</li>
+          <li id="7">7</li>
+          <li id="8">8</li>
+          <li id="9">9</li>
+          <li id="0">0</li>
+        </ul>
+      </div>
+     
+     
+    </div>
+  </body>
+</html>
